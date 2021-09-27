@@ -42,3 +42,11 @@ Successfully extracted file 'nested_image.jpg'! (119088 bytes)
 Done decoding, 1 hidden text message(s) and 1 hidden file(s) were found.
 
 ```
+
+### Encode
+```
+> python simsteg.py source.png -f nested.png -o dest.png
+File was hidden in the image file. (130865 bytes)
+The modified image was successfully saved to dest.png
+
+```
