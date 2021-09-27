@@ -48,3 +48,9 @@ Done decoding, 1 hidden text message(s) and 1 hidden file(s) were found.
 File was hidden in the image file. (130865 bytes)
 The modified image was successfully saved to dest.png
 ```
+
+## Your turn
+Download the image of a kitten below together with the script from above.\
+Your task is to decode the contents of this file.
+
+![kitten.jpg](kitten.jpg)
