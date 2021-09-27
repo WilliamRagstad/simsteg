@@ -53,4 +53,4 @@ The modified image was successfully saved to dest.png
 Download the image of a kitten below together with the script from above.\
 Your task is to decode the contents of this file.
 
-![kitten.jpg](kitten.jpg)
+![kitten.jpg](examples/kitten.jpg)
