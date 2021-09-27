@@ -37,6 +37,7 @@ Hello, beautiful
 world!
 ---- Text 1 End ----
 The file 'nested_image.jpg' already exists. Do you want to overwrite it? (y/n): y
+Successfully extracted file 'nested_image.jpg'! (119088 bytes)
 
 Done decoding, 1 hidden text message(s) and 1 hidden file(s) were found.
 
