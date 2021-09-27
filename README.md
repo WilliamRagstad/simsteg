@@ -26,3 +26,18 @@ optional arguments:
   -t TEXT, --text TEXT  The text to be hidden in the input image file.
   -d, --decode          Decode the input image file.
 ```
+
+## Examples
+
+### Decode
+```
+> python simsteg.py image.png -d  
+--- Text 1 Start ---
+Hello, beautiful
+world!
+---- Text 1 End ----
+The file 'nested_image.jpg' already exists. Do you want to overwrite it? (y/n): y
+
+Done decoding, 1 hidden text message(s) and 1 hidden file(s) were found.
+
+```
