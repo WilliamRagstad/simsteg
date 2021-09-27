@@ -5,7 +5,7 @@
 This program was made parially as a challange for OpenAI Codex, to measure the limits of the models knowledge.
 The code has been rewritten and improved by hand to make the program as stable as possible.
 
-### [Download](https://raw.githubusercontent.com/WilliamRagstad/simsteg/main/simsteg.py)
+### [Download source](https://raw.githubusercontent.com/WilliamRagstad/simsteg/main/simsteg.py)
 
 ## Usage
 ```
