@@ -27,6 +27,7 @@ import argparse
 import os
 import sys
 
+VERSION = "1.9"
 text_start = "|text_start|"
 text_start_len = len(text_start)
 text_end = "|text_end|"
@@ -47,14 +48,24 @@ def main():
     parser.add_argument(
         "-o", "--output", help="The output image file to be created.")
     parser.add_argument(
-        "-v", "--verbose", help="Output more information about the process.", action="store_true")
+        "-i", "--verbose", help="Output more information about the process.", action="store_true")
     parser.add_argument(
         "-f", "--file", help="The file to be hidden in the input image file.")
     parser.add_argument(
         "-t", "--text", help="The text to be hidden in the input image file.")
     parser.add_argument(
         "-d", "--decode", help="Decode the input image file.", action="store_true")
-    args = parser.parse_args()
+    parser.add_argument(
+        "-v", "--version", help="Show the current simsteg version.", action="store_true")
+    try:
+        args = parser.parse_args()
+    except argparse.ArgumentError as e:
+        print("Error: Invalid arguments.\n" + e.message)
+        sys.exit(1)
+
+    if args.version:
+        print("simsteg version: {}".format(VERSION))
+        sys.exit(0)
 
     # Check if the input file exists
     if not os.path.isfile(args.input):
@@ -135,7 +146,7 @@ def encode_text(image_input, text, outpath, verbose):
                       str(len(image_bytes)) + " bytes)")
 
         # Get the byte representation of the text string
-        text_bytes = text.encode()
+        text_bytes: bytes = text.encode()
 
         # Write the header to the steg_image
         steg_image.write(text_start.encode())
@@ -216,9 +227,9 @@ def decode(image_input, verbose):
                 text = text_bytes.decode()
 
                 # Print the text to the screen
-                print("--- Text {} Start ---".format(found_texts + 1))
+                print("--- Text {} START ---".format(found_texts + 1))
                 print(text)
-                print("---- Text {} End ----".format(found_texts + 1))
+                print("---- Text {} END ----\n".format(found_texts + 1))
 
                 # Set the offset to the end of the text_end header
                 offset += text_end_len
@@ -238,6 +249,7 @@ def decode(image_input, verbose):
                 file_bytes, offset = read_until(
                     steg_bytes, offset, file_end + file_name + "|")
 
+                print("--- File {} START ---".format(found_files + 1))
                 # Check if file_name already exists
                 save_file = True
                 if os.path.isfile(file_name):
@@ -254,16 +266,17 @@ def decode(image_input, verbose):
                         print(
                             "Successfully extracted file '{}'! ({} bytes)".format(file_name, len(file_bytes)))
 
+                print("--- File {} END ---\n".format(found_files + 1))
                 # Set the offset to the end of the file_end header
                 offset += file_end_len
                 found_files += 1
             else:
                 offset += 1
-    print("\nDone decoding, {} hidden text message(s) and {} hidden file(s) were found.".format(
+    print("Done decoding, {} hidden text message(s) and {} hidden file(s) were found.".format(
         found_texts, found_files))
 
 
-def read_until(steg_bytes, offset, ending):
+def read_until(steg_bytes: bytes, offset: int, ending: str):
     """
     Read the bytes of the steg_bytes from the offset until the ending byte sequence is found.
     Return the bytes read and the offset of the ending byte sequence.
