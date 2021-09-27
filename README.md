@@ -15,7 +15,7 @@ usage: simsteg.py [-h] [-o OUTPUT] [-v] [-f FILE] [-t TEXT] [-d] input
 A tool that takes an JPG or PNG image as input, hides some data in it and saves the new modified image.
 
 positional arguments:
-  input                 The input image file to be modified.
+  input                 The input image file.
 
 optional arguments:
   -h, --help            show this help message and exit
